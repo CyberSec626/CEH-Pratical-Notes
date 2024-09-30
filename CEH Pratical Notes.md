@@ -621,14 +621,21 @@ VeraCrypt
 https://github.com/prbhtkumr/PhoneSploit
 
 Pesquisando por um arquivo
+
 adb shell ls -R | grep filename
+
 adb pull /sdcard/log.txt %USERPROFILE%\Desktop\
 
 nmap ip -sV -p 5555
+
 apt update
+
 apt install adb
+
 adb tcpip 5555
+
 `adb connect <ip-address>:5555`
+
 adb shell
 
 ## RAT Tool
