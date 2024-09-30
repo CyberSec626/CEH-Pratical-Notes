@@ -30,20 +30,6 @@ https://academy.hackthebox.com/module/113/section/1089
 COURSE ATTACKING ENTERPRISE NETWORKS
 https://academy.hackthebox.com/module/163/section/1544
 
-## DRUPAL
-
-CMS Drupal v7.34
-http://ftp.drupal.org/files/projects/drupal-7.34.tar.gz
-https://www.drupal.org/blog/drupal-734-and-634-released
-https://www.tenable.com/plugins/nessus/79386
-https://www.acunetix.com/vulnerabilities/web/drupal-core-7-x-multiple-vulnerabilities-7-0-7-34/
-https://www.drupal.org/forum/newsletters/security-advisories-for-drupal-core/2015-03-18/drupal-core-moderately-critical
-
-
-Como instalar o drupal
-https://www.drupal.org/docs/7/install
-
-
 ## CMS
 
 
