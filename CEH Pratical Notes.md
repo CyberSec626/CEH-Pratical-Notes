@@ -126,8 +126,12 @@ cewl -d -w save_wordlist.txt 2 -m 5 www.example.com
 https://github.com/danielmiessler/SecLists
 
 **Quebrando a hash**
+ent arquivo
 
 Comando: `john SMB-NTLMv2-SSP-10.10.1.11.txt --wordlist /usr/share/wordlists/rockyou.txt`
+
+**Calculando a entropia**
+
 
 **Bruteforce em protocolos**
 
