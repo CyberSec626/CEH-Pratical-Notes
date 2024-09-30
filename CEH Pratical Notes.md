@@ -43,7 +43,7 @@ Se cair DVWA, eu devo ir em DVWA Security e colocar em Low para diminuir o níve
 
 ___
 ___
-# NOTAS PARA A PROVA
+# NOTAS DE ESTUDO
 ___
 ___
 
