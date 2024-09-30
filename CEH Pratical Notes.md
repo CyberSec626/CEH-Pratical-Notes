@@ -364,7 +364,6 @@ aircrack-ng WPA2crack-01.cap -w password.txt
 Cracking Wifi Password
 aircrack-ng -a2 -b [Target BSSID] -w [password_Wordlist.txt] [WP2 PCAP file] (For cracking WPA2 or other networks through the captured .pcap file)
 
-
 ## WEB HACKING
 
 ### CMS
@@ -675,3 +674,11 @@ adb shell
 - enter host ip ( attacker ip)
 - check checkBox - Copy To startup & Registry startup
 - click build
+
+### Entrypoiunt
+
+**Descobrindo o Entry Point do binário no Linux**
+
+readelf -h /bin/bash
+
+
