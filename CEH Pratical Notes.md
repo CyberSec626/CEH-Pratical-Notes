@@ -136,7 +136,7 @@ ent arquivo
 Comando: `john SMB-NTLMv2-SSP-10.10.1.11.txt --wordlist /usr/share/wordlists/rockyou.txt`
 
 **Calculando a entropia**
-
+ent arquivo
 
 **Bruteforce em protocolos**
 
