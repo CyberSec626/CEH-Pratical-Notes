@@ -1,9 +1,10 @@
 
 # Itens importantes
 
-- CMS Drupal
+- CMS Wordpress, Joomla, Drupal
 - Filtros Wireshark
 - Quebra de 4WHS Wireless
+- Quebra LLMNR
 - OpenStego
 - Steghide
 - Stegnohide
