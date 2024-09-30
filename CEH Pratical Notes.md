@@ -86,6 +86,8 @@ Comando: `nmap -sSV -p 80 --open -Pn -iL hosts -oG web.txt`
 
 `nmap -Pn -sC -sV -p- -iL enum/alvos.txt -oA servicos/full`
 
+nmap --script smb-os-discovery.nse -p445 192.168.10.35
+
 
 ## SYSTEM HACKING
 
