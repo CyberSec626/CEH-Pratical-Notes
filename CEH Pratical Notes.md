@@ -49,6 +49,11 @@ ___
 
 ## SCANNING
 
+sudo arp-scan -local
+netdiscover -i 192.150.16.0
+nmap -sn ip/24
+
+
 **ARP Scan**
 sudo arpscan --local
 
